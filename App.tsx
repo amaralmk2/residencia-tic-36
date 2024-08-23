@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+
+  useEffect(()=>{
+  console.warn("checked!")
+},[]);
+
+
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text style={{color:'red'}}>Barbara é linda! </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,7 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
