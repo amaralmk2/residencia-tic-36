@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Tasks } from './src/components/Tasks';
 import { CardNumber } from './src/components/CardNumber';
+import { InputAddTask } from './src/components/InputAddTask';
 
 export default function App() {
 
@@ -14,11 +15,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <InputAddTask/>
       <View style={{flexDirection: 'row', gap: 16}}>
         <CardNumber />
         <CardNumber />
         <CardNumber />
-        </View>
+        </View>    
       <Tasks />
       <Tasks />
       <Tasks />
