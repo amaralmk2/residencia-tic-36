@@ -4,6 +4,7 @@ export const InputContainer = styled.View`
     flex-direction: row;
     width: 100%;
     border-radius: 4px;
+    margin-bottom: 16px;
 `;
 
 export const Input = styled.TextInput`

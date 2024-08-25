@@ -11,11 +11,11 @@ export default function App() {
 
   const [tasks, setTask] = useState<{description: string; checked: boolean}[]>([]);
   const [taskText, setTaskText] = useState("");
-  const [taskCount, setCountTask] = useState(0);
+  const [countTask, setCountTask] = useState(0);
 
   function handleTaskAdd(){
    
-    if(taskText.length > 0){
+    if(taskText == ""){
       return Alert.alert("Erro", "tarefa está sem descrição.");
     }
 
@@ -58,8 +58,12 @@ export default function App() {
         <CardNumber />
         <CardNumber />
         </View>    
-  
+    
+
       
+      
+      <View style={styles.tasks}>
+      <Text>Tarefas: {countTask} </Text>
     <FlatList
 
       data={tasks}
@@ -74,6 +78,7 @@ export default function App() {
 
         <View><Text >Você ainda não adcionou nenhuma task!</Text></View>
       )}/>
+    </View>
     </View>
   );
 }
@@ -110,6 +115,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#1E1E1E',
     padding: 16,
     borderRadius: 4,
+
+  },
+
+  tasks: {
+
+    justifyContent: 'flex-start',
+    width: '100%',
+    flexDirection: 'column',
 
   }
 
