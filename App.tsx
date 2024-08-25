@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Tasks } from './src/components/Tasks';
 import { CardNumber } from './src/components/CardNumber';
 import { InputAddTask } from './src/components/InputAddTask';
@@ -11,21 +11,29 @@ export default function App() {
 
   const [tasks, setTask] = useState<{description: string; checked: boolean}[]>([]);
   const [taskText, setTaskText] = useState("");
+  const [taskCount, setCountTask] = useState(0);
 
   function handleTaskAdd(){
    
     if(taskText.length > 0){
-      console.log("Vazio!");
+      return Alert.alert("Erro", "tarefa está sem descrição.");
     }
 
     if(tasks.some((tasks)=> tasks.description === taskText)) {
-    console.log("Essa tarefa já existe!");
+    return Alert.alert("Essa tarefa já foi criada.");
     }
 
     const newTask = {description: taskText, checked: false};
     setTask([...tasks, newTask]);
     setTaskText('');
   }
+
+  useEffect(()=> {
+
+    let totalTasks = tasks.length;
+    setCountTask(totalTasks); 
+
+  }, [tasks]);
 
   return (
     <View style={styles.container}>
@@ -40,7 +48,7 @@ export default function App() {
         onChangeText={setTaskText}
         value={taskText}   
         />
-        <TouchableOpacity style={styles.InputButton}>
+        <TouchableOpacity style={styles.InputButton} onPress={handleTaskAdd}>
         <Feather name='send' size={24} color="white" />
         </TouchableOpacity>
         </View>
