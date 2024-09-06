@@ -38,20 +38,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      
-      <View style={styles.InputContainer}>
-        <TextInput
-        style={styles.input}
-        placeholder='Digite a tardefa...'
-        placeholderTextColor="white"
-        keyboardType='default' 
-        onChangeText={setTaskText}
-        value={taskText}   
-        />
-        <TouchableOpacity style={styles.InputButton} onPress={handleTaskAdd}>
-        <Feather name='send' size={24} color="white" />
-        </TouchableOpacity>
-        </View>
+      <InputAddTask onPress={handleTaskAdd} onChangeText={setTaskText} value={taskText}/>
+   
 
       <View style={{flexDirection: 'row', gap: 16}}>
         <CardNumber />

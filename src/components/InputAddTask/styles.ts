@@ -10,15 +10,14 @@ export const InputContainer = styled.View`
 export const Input = styled.TextInput`
     background-color: #252627;
     flex: 1;
-  
+    border-radius: 4px;
     padding: 16px;
     color: #FFFFFF;
     
 `;
 
 export const InputButton = styled.TouchableOpacity`
-    width: 56px;
-    height: 56px;
+    padding: 16px;
     background-color: #1E1E1E;
     justify-content: center;
     align-items: center;
