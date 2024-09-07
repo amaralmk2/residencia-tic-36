@@ -19,7 +19,7 @@ export default function App() {
       return Alert.alert("Erro", "tarefa está sem descrição.");
     }
 
-    if(tasks.some((tasks)=> tasks.description === taskText)) {
+    if(tasks.some((task)=> task.description === taskText)) {
     return Alert.alert("Essa tarefa já foi criada.");
     }
 
@@ -27,6 +27,38 @@ export default function App() {
     setTask([...tasks, newTask]);
     setTaskText('');
   }
+
+  function handleTaskChangeStatus(taskToChange: {description: string, checked: boolean}){
+
+    const updatedTasks = tasks.filter((task) => task !== taskToChange);
+    const newTask ={
+      description: taskToChange.description,
+      checked: !taskToChange.checked,
+    }
+
+    updatedTasks.push(newTask);
+    setTask(updatedTasks);
+
+  }
+
+  function handleTaskChangeStatusDelete(taskToDelete: {description: string, checked: boolean}){
+
+    Alert.alert(
+      "Atenção", `Deseja realmente deletar a tarefa? ${taskToDelete.description}`,
+    [
+      {text: "Sim",
+        onPress: () => {
+          const updateTasks =tasks.filter((task) => task != taskToDelete)
+          setTask(updateTasks);
+        }
+      },
+
+      {text: "Cancelar", style: "cancel"}
+      
+    ])
+    }
+
+  
 
   useEffect(()=> {
 
@@ -58,7 +90,15 @@ export default function App() {
       keyExtractor={(item, index) => index.toString()}
       renderItem={
         ({item}) => (
-          <Tasks />
+          <Tasks
+
+          title={item.description}
+          status={item.checked}
+          onCheck={() => handleTaskChangeStatus(item)}
+          onDelete={() => handleTaskChangeStatusDelete(item)}
+
+          
+          />
         )
       }
 
