@@ -1,11 +1,18 @@
 import { Container, CardTitle, CardValue } from "./styles";
 
-export function CardNumber(){
+type Props = {
+    title: string;
+    num: number;
+    color: string;
+}
+
+
+export function CardNumber({title, num, color}:Props){
     return(
 
         <Container>
-            <CardTitle>Tarefas</CardTitle>
-            <CardValue>4</CardValue>
+            <CardTitle>{title}</CardTitle>
+            <CardValue style={color ? {color: color} : {}} >{num}</CardValue>
             </Container>
 
     );
