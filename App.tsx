@@ -12,6 +12,7 @@ export default function App() {
   const [tasks, setTask] = useState<{description: string; checked: boolean}[]>([]);
   const [taskText, setTaskText] = useState("");
   const [countTask, setCountTask] = useState(0);
+  const [countTaskChecked, setCountCheckedTask] = useState(0);
 
   function handleTaskAdd(){
    
@@ -58,14 +59,21 @@ export default function App() {
     ])
     }
 
-  
-
   useEffect(()=> {
 
     let totalTasks = tasks.length;
     setCountTask(totalTasks); 
 
   }, [tasks]);
+
+  useEffect(()=> {
+
+    let totalTasksChecked = tasks.filter(task => task.checked).length;
+    setCountCheckedTask(totalTasksChecked)
+
+  }, [tasks]);
+
+  const countTaskOpen = countTask - countTaskChecked;
 
   return (
     <View style={styles.container}>
@@ -74,9 +82,9 @@ export default function App() {
    
 
       <View style={{flexDirection: 'row', gap: 16}}>
-        <CardNumber />
-        <CardNumber />
-        <CardNumber />
+        <CardNumber title={"Cadastrados"} num={countTask} color={"#1E1E1E"}/>
+        <CardNumber title={"Em aberto"} num={countTaskOpen} color={"#E88A1A"} />
+        <CardNumber title={"Finalizadas"} num={countTaskChecked} color={"#0E9577"}/>
         </View>    
     
 
